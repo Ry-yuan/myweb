@@ -9,7 +9,7 @@ a {
 .blog-list {}
 
 .blog-list .list-item-left {
-    margin-left: 330px;
+    /* margin-left: 330px; */
     margin-top: 20px;
 }
 
@@ -19,7 +19,7 @@ a {
 }
 
 .blog-list .list-item-right {
-    margin-left: -330px;
+    /* margin-left: -330px; */
     margin-top: 20px;
 }
 
