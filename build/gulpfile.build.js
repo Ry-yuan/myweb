@@ -26,14 +26,18 @@ function build() {
      * CSS样式处理 
      */
     gulp.task('css', function() {
-        return gulp.src(Config.css.src).pipe(autoprefixer('last 2 version')).pipe(cssnano()) //执行压缩  
+        return gulp.src(Config.css.src).pipe(autoprefixer('last 2 version')).pipe(gulp.dest(Config.css.dist)).pipe(rename({
+                suffix: '.min'
+            })).pipe(cssnano()) //执行压缩  
             .pipe(gulp.dest(Config.css.dist));
     });
     /** 
      * LESS样式处理 
      */
     gulp.task('less', function() {
-        return gulp.src(Config.less.src).pipe(autoprefixer('last 2 version')).pipe(less()).pipe(gulp.dest(Config.less.dist))
+        return gulp.src(Config.less.src).pipe(autoprefixer('last 2 version')).pipe(less()).pipe(gulp.dest(Config.less.dist)).pipe(rename({
+                suffix: '.min'
+            })) //rename压缩后的文件名  
             .pipe(cssnano()) //执行压缩  
             .pipe(gulp.dest(Config.less.dist));
     });
@@ -41,7 +45,9 @@ function build() {
      * js处理 
      */
     gulp.task('js', function() {
-        return gulp.src(Config.js.src).pipe(gulp.dest(Config.js.dist)).pipe(uglify()).pipe(gulp.dest(Config.js.dist));
+        return gulp.src(Config.js.src).pipe(gulp.dest(Config.js.dist)).pipe(rename({
+            suffix: '.min'
+        })).pipe(uglify()).pipe(gulp.dest(Config.js.dist));
     });
     /** 
      * 合并所有js文件并做压缩处理 
@@ -56,11 +62,19 @@ function build() {
      */
     gulp.task('images', function() {
         return gulp.src(Config.img.src).pipe(imagemin({
-            optimizationLevel: 5,
+            optimizationLevel: 3,
             progressive: true,
             interlaced: true
         })).pipe(gulp.dest(Config.img.dist));
     });
-    gulp.task('build', ['html', 'css', 'less', 'js', 'assets', 'images']);
+
+    gulp.task('demos',function(){
+        return gulp.src(Config.demos.src).pipe(gulp.dest(Config.demos.dist));
+    });
+
+    gulp.task('server',function(){
+        return gulp.src(Config.server.src).pipe(gulp.dest(Config.server.dist));
+    });
+    gulp.task('build', ['html', 'css', 'less', 'js', 'assets', 'images','demos','server']);
 }
 module.exports = build;

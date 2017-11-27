@@ -1,1 +1,36 @@
-$(function(){(function(){var e=document.querySelector(".panels__side--left"),t=document.querySelector(".panels__side--right"),i=document.querySelector(".arrow--left"),n=document.querySelector(".arrow--right"),s=function(){e.classList.toggle("panels__side--left-active"),t.classList.toggle("panels__side--right-hidden")},c=function(){t.classList.toggle("panels__side--right-active"),e.classList.toggle("panels__side--left-hidden")},l=function(){i.addEventListener("click",s,!1),n.addEventListener("click",c,!1)};return{init:function(){l()}}})().init()});
+$(function() {
+
+    var Panels = (function() {
+
+        var panelLeft = document.querySelector('.panels__side--left');
+        var panelRight = document.querySelector('.panels__side--right');
+        var left = document.querySelector('.arrow--left');
+        var right = document.querySelector('.arrow--right');
+
+        var openLeft = function() {
+            panelLeft.classList.toggle('panels__side--left-active');
+            panelRight.classList.toggle('panels__side--right-hidden');
+        };
+
+        var openRight = function() {
+            panelRight.classList.toggle('panels__side--right-active');
+            panelLeft.classList.toggle('panels__side--left-hidden');
+        };
+
+        var bindActions = function() {
+            left.addEventListener('click', openLeft, false);
+            right.addEventListener('click', openRight, false);
+        };
+
+        var init = function() {
+            bindActions();
+        };
+
+        return {
+            init: init
+        };
+
+    }());
+
+    Panels.init();
+});

@@ -40,6 +40,14 @@ var Config = {
     img: {
         src: SRC_DIR + 'images/**/*',
         dist: DIST_DIR + 'images'
+    },
+    demos:{
+        src :SRC_DIR + 'demos/**/*',
+        dist : DIST_DIR + 'demos'
+    },
+    server:{
+        src :SRC_DIR + 'server/**/*',
+        dist : DIST_DIR + 'server'
     }
 };
 // 暴露config变量
