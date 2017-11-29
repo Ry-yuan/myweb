@@ -12,3 +12,23 @@ app.get('/', function(req, res) {
 }).listen(80, function() {  //监听80端口
     console.log("web start at 80 port");
 });
+
+
+// jsonp路由,用于jsonp测试，返回数据
+app.get('/jsonp', function(req,res){
+    // 获得参数callback
+    var callbackFuncName = req.query.callback || 'callback';
+    // 数据
+    var data = [
+        {
+            "姓名" : "ry",
+            "年龄":21,
+            "性别":"男",
+            "职业":"学生",
+            "爱好":"女"
+        }
+    ];
+    // 转换为字符串
+    var data_str = JSON.stringify(data);
+    res.send(callbackFuncName+"("+data_str+");");
+})
